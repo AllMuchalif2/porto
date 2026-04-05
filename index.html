@@ -6,11 +6,11 @@
     <title>Memuat...</title>
     <meta name="description" content="Portofolio pribadi developer" />
 
-    <!-- Google Fonts: Syne (display) + DM Sans (body) -->
+    <!-- Google Fonts: Bangers (display comic) + DM Sans (body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bangers&family=DM+Sans:ital,wght@0,400;0,700;1,400&display=swap"
       rel="stylesheet"
     />
 
@@ -23,63 +23,75 @@
     <link rel="stylesheet" href="src/style.css" />
   </head>
   <body>
-    <!-- ░░ NOISE OVERLAY ░░ -->
-    <div class="noise-overlay" aria-hidden="true"></div>
+    <!-- ░░ MANGA EFFECT OVERLAY (Halftone) ░░ -->
+    <div class="manga-overlay" aria-hidden="true"></div>
 
     <!-- ░░ NAVBAR ░░ -->
     <nav id="navbar" aria-label="Navigasi utama">
       <div class="nav-inner">
-        <a href="#" class="nav-brand" id="nav-brand">—</a>
+        <a href="#" class="nav-brand manga-text" id="nav-brand">...</a>
         <div class="nav-links">
-          <a href="#bento-container">Portofolio</a>
-          <a href="#footer">Kontak</a>
+          <a href="#manga-container">VOL. 1: PORTFOLIO</a>
+          <a href="#footer">CONTACT!</a>
         </div>
         <a
           id="nav-resume-btn"
           href="#"
           target="_blank"
           rel="noopener"
-          class="btn-resume hidden"
+          class="btn-comic hidden"
         >
-          <i class="fas fa-file-arrow-down"></i> Resume
+          RESUME! <i class="fas fa-file-arrow-down"></i>
         </a>
       </div>
     </nav>
 
-    <!-- ░░ HERO ░░ -->
-    <header id="hero" aria-label="Perkenalan">
-      <div class="hero-eyebrow">
-        <span class="dot-pulse" aria-hidden="true"></span>
-        <span>Tersedia untuk proyek baru</span>
+    <!-- ░░ HERO PANEL ░░ -->
+    <header class="manga-panel-hero" id="hero" aria-label="Perkenalan">
+      
+      <!-- Panel 1: Gambar & Nama -->
+      <div class="hero-character-panel">
+        <div class="hero-photo-wrapper">
+           <!-- Diisi JS -->
+        </div>
+        <div class="hero-name-bubble">
+          <h1 id="hero-name" class="manga-text hero-name">NAME!</h1>
+        </div>
       </div>
-      <h1 id="hero-name" class="hero-name">—</h1>
-      <p id="hero-desc" class="hero-desc">—</p>
-      <div class="hero-cta">
-        <a href="#bento-container" class="btn-primary">
-          Lihat Karya <i class="fas fa-arrow-down"></i>
-        </a>
-        <a
-          id="hero-resume-btn"
-          href="#"
-          target="_blank"
-          rel="noopener"
-          class="btn-ghost hidden"
-        >
-          <i class="fas fa-file-lines"></i> Unduh Resume
-        </a>
+
+      <!-- Panel 2: Deskripsi & Cta (Speech Bubble) -->
+      <div class="hero-dialog-panel">
+        <div class="speech-bubble">
+          <p id="hero-desc" class="hero-desc">...</p>
+        </div>
+        <div class="hero-cta">
+          <a href="#manga-container" class="btn-comic btn-primary">
+            READ MORE! <i class="fas fa-arrow-down"></i>
+          </a>
+          <a
+            id="hero-resume-btn"
+            href="#"
+            target="_blank"
+            rel="noopener"
+            class="btn-comic btn-ghost hidden"
+          >
+            RESUME <i class="fas fa-download"></i>
+          </a>
+        </div>
       </div>
+
     </header>
 
-    <!-- ░░ BENTO GRID ░░ -->
-    <main id="bento-container" aria-label="Bagian konten utama">
+    <!-- ░░ MANGA GRID LAYOUT ░░ -->
+    <main id="manga-container" aria-label="Bagian konten utama">
       <!-- Kartu akan diinjeksi oleh JS -->
-      <div class="bento-skeleton" aria-hidden="true"></div>
+      <div class="comic-skeleton" aria-hidden="true"><h2>LOADING PAGE...</h2></div>
     </main>
 
     <!-- ░░ FOOTER ░░ -->
     <footer id="footer" aria-label="Footer dan media sosial">
       <div class="footer-inner">
-        <p class="footer-brand" id="footer-brand">—</p>
+        <h2 class="footer-brand manga-text" id="footer-brand">TO BE CONTINUED...</h2>
         <div
           id="footer-socials"
           class="footer-socials"
@@ -87,7 +99,7 @@
         >
           <!-- Ikon sosial diinjeksi oleh JS -->
         </div>
-        <p class="footer-copy" id="footer-copy">—</p>
+        <p class="footer-copy" id="footer-copy">© 2026</p>
       </div>
     </footer>
 
