@@ -3,14 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio</title>
-    <meta name="description" content="Professional Portfolio" />
+    <title>TERMINAL PORTFOLIO</title>
+    <meta name="description" content="CLI Portfolio" />
 
-    <!-- Google Fonts: Inter -->
+    <!-- Google Fonts: Fira Code -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;700&display=swap"
       rel="stylesheet"
     />
 
@@ -23,75 +23,77 @@
     <link rel="stylesheet" href="src/style.css" />
   </head>
   <body>
-    <!-- ░░ NAVBAR ░░ -->
-    <nav id="navbar" aria-label="Main Navigation">
-      <div class="container nav-inner">
-        <a href="#" class="nav-brand" id="nav-brand">Logo</a>
+    <!-- ░░ CRT OVERLAY ░░ -->
+    <div class="crt-overlay" aria-hidden="true"></div>
+
+    <div class="terminal-container">
+      
+      <!-- ░░ NAVBAR LOG ░░ -->
+      <nav id="navbar" aria-label="System Menu">
+        <div class="sys-output">Initializing system boot...</div>
+        <div class="sys-output">Loading graphical CLI... [OK]</div>
+        <div id="nav-brand" class="cli-brand">visitor@system:~$</div>
         <div class="nav-links">
-          <a href="#projects">Projects</a>
-          <a href="#experience">Experience</a>
-          <a href="#footer">Contact</a>
+          <span>&gt; <a href="#projects">cd ./projects</a></span>
+          <span>&gt; <a href="#experience">cd ./experience</a></span>
+          <span>&gt; <a href="#footer">ping contact</a></span>
         </div>
-        <a
-          id="nav-resume-btn"
-          href="#"
-          target="_blank"
-          rel="noopener"
-          class="btn btn-outline hidden"
-        >
-          Resume
-        </a>
-      </div>
-    </nav>
+      </nav>
 
-    <!-- ░░ HERO SECTION ░░ -->
-    <header class="section-hero" id="hero" aria-label="Hero Section">
-      <div class="container hero-inner">
-        <div class="hero-photo-container">
-          <!-- Injected via JS -->
+      <!-- ░░ CLI HERO SECTION ░░ -->
+      <header class="terminal-section" id="hero" aria-label="Hero Section">
+        <div class="cli-prompt">
+          <span class="host">root@server</span>:<span class="path">~</span>$ <span class="command">whoami</span>
         </div>
-        <div class="hero-content">
-          <span class="hero-subtitle">Hello, I am</span>
-          <h1 id="hero-name" class="hero-title">Developer Name</h1>
-          <p id="hero-desc" class="hero-description">Brief introduction and summary about what I do and my professional focus.</p>
-          <div class="hero-actions">
-            <a href="#projects" class="btn btn-primary">View Work</a>
-            <a
-              id="hero-resume-btn"
-              href="#"
-              target="_blank"
-              rel="noopener"
-              class="btn btn-outline hidden"
-            >
-              Download Resume
-            </a>
+        <div class="cli-output hero-output">
+          
+          <div class="hero-flex">
+            <div class="hero-photo-container">
+              <!-- Injected via JS -->
+            </div>
+            <div class="hero-text-block">
+              <h1 id="hero-name" class="typewriter-text"></h1>
+              <p id="hero-desc" class="typewriter-text"></p>
+              
+              <div class="hero-actions">
+                <span>&gt; <a href="#projects" class="cli-link">./view_work.sh</a></span>
+                <span id="hero-resume-wrapper" class="hidden">
+                  &gt; <a id="hero-resume-btn" href="#" target="_blank" rel="noopener" class="cli-link">wget resume.pdf</a>
+                </span>
+              </div>
+            </div>
           </div>
+
         </div>
-      </div>
-    </header>
+      </header>
 
-    <!-- ░░ MAIN CONTENT ░░ -->
-    <main id="main-content">
-      <!-- Sections will be injected by JS here -->
-      <div class="container skeleton-loader">
-        <p>Loading content...</p>
-      </div>
-    </main>
+      <!-- ░░ MAIN CONTENT ░░ -->
+      <main id="main-content">
+        <!-- Sections will be injected by JS here -->
+        <div class="cli-prompt">
+          <span class="host">root@server</span>:<span class="path">~</span>$ <span class="command">tail -f system.log</span>
+        </div>
+        <div class="cli-output">Retrieving data...</div>
+      </main>
 
-    <!-- ░░ FOOTER ░░ -->
-    <footer id="footer" aria-label="Footer and Socials">
-      <div class="container footer-inner">
-        <div class="footer-top">
-          <h2 class="footer-heading" id="footer-brand">Let's Connect</h2>
-          <div id="footer-socials" class="social-links" aria-label="Social Media">
+      <!-- ░░ FOOTER ░░ -->
+      <footer id="footer" class="terminal-section" aria-label="Footer and Socials">
+        <div class="cli-prompt">
+          <span class="host">root@server</span>:<span class="path">~</span>$ <span class="command">netstat -an | grep CONNECT</span>
+        </div>
+        <div class="cli-output">
+          <div id="footer-socials" class="social-list" aria-label="Social Media">
             <!-- Icons injected via JS -->
           </div>
+          <br/>
+          <div id="footer-copy" class="sys-output">System closing operations... EOF</div>
         </div>
-        <div class="footer-bottom">
-          <p class="footer-copy" id="footer-copy">© 2026 Developer</p>
-        </div>
-      </div>
-    </footer>
+      </footer>
+
+    </div>
+
+    <!-- Blinking Cursor Global -->
+    <div class="global-cursor">_</div>
 
     <script src="src/script.js"></script>
   </body>

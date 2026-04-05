@@ -1,6 +1,6 @@
 /**
- * PORTOFOLIO MINIMALIST — script.js
- * Merender layout single-column/minimalist grid.
+ * PORTOFOLIO TERMINAL CLI — script.js
+ * Merender CLI components dan typewriter effect.
  */
 
 "use strict";
@@ -12,16 +12,16 @@ document.addEventListener("DOMContentLoaded", () => {
 async function initPortfolio() {
   try {
     const res = await fetch("./data.json");
-    if (!res.ok) throw new Error(`Gagal memuat data.json (status ${res.status})`);
+    if (!res.ok) throw new Error(`Failed to load data.json (status ${res.status})`);
     const data = await res.json();
 
     applyTheme(data.settings);
     renderNavbar(data.header);
-    renderHero(data.header);
+    await animateHero(data.header); // Tunggu ketikan selesai
     renderMainContent(data);
     renderFooter(data.header, data.socials);
   } catch (err) {
-    console.error("Error inisialisasi portofolio:", err);
+    console.error("SYS ERR:", err);
     showError(err.message);
   }
 }
@@ -30,16 +30,10 @@ function applyTheme(settings) {
   if (!settings) return;
   const root = document.documentElement.style;
   
-  // Notice mapping mismatch handling: minimalist theme uses textLight/textDark differently.
-  // We'll map settings textLight -> var(--text-main) and settings textDark -> var(--text-muted) in CSS directly,
-  // we just need to pipe the values correctly to the variables that match our CSS.
   const map = {
     "--bg": settings.bg,
-    "--card-bg": settings.cardBg,
-    "--card-border": settings.cardBorder,
-    "--text-main": settings.textLight,   // Note the re-map
-    "--text-muted": settings.textDark,   // Note the re-map
-    "--primary": settings.primary,
+    "--text-main": settings.primary,
+    "--text-muted": settings.textDark,
     "--secondary-bg": settings.secondary,
   };
   
@@ -50,43 +44,58 @@ function applyTheme(settings) {
 
 function renderNavbar(header) {
   if (!header) return;
-  document.title = header.namaPanjang || header.nama || "Portfolio";
-  setText("#nav-brand", header.nama || "Portfolio");
+  document.title = "root@" + (header.nama || "portfolio") + ":~";
+}
 
+async function animateHero(header) {
+  if (!header) return;
+  
+  // Setup Fallback Foto CLI
+  const wrapper = document.querySelector(".hero-photo-container");
+  const FALLBACK_AVATAR = `https://api.dicebear.com/9.x/initials/svg?seed=${encodeURIComponent(header.nama || "Dev")}&backgroundColor=0c0c0c&textColor=00ff00`;
+  const fotoSrc = header.foto && header.foto.trim() !== "" ? header.foto.trim() : FALLBACK_AVATAR;
+
+  wrapper.innerHTML = `<img id="profile-photo" src="${escHtml(fotoSrc)}" alt="usr_img" />`;
+  const img = wrapper.querySelector("#profile-photo");
+  img.addEventListener("error", () => { img.src = FALLBACK_AVATAR; });
+
+  // Typewriter effect untuk text
+  const nameEl = document.getElementById("hero-name");
+  const descEl = document.getElementById("hero-desc");
+  
+  const nameText = header.namaPanjang || header.nama || "sysadmin";
+  const descText = header.deskripsi || "No description provided.";
+
+  await typeText(nameEl, nameText, 50);
+  await typeText(descEl, descText, 25);
+
+  // Munculkan sisanya
   if (header.linkResume && header.linkResume.trim() !== "") {
-    const btn = document.getElementById("nav-resume-btn");
+    const btnWrapper = document.getElementById("hero-resume-wrapper");
+    const btn = document.getElementById("hero-resume-btn");
     if (btn) {
       btn.href = header.linkResume;
-      btn.classList.remove("hidden");
+      btnWrapper.classList.remove("hidden");
     }
   }
 }
 
-function renderHero(header) {
-  if (!header) return;
-  setText("#hero-name", header.namaPanjang || header.nama || "Developer");
-  setText("#hero-desc", header.deskripsi || "I build elegant solutions.");
-
-  const wrapper = document.querySelector(".hero-photo-container");
-  const fallbackLetters = encodeURIComponent(header.nama || "Dev");
-  const FALLBACK_AVATAR = `https://api.dicebear.com/9.x/initials/svg?seed=${fallbackLetters}&backgroundColor=e5e7eb&textColor=111827`;
-  
-  const fotoSrc = header.foto && header.foto.trim() !== "" ? header.foto.trim() : FALLBACK_AVATAR;
-
-  wrapper.innerHTML = `<img id="profile-photo" src="${escHtml(fotoSrc)}" alt="${escHtml(header.namaPanjang || '')}" />`;
-  const img = wrapper.querySelector("#profile-photo");
-  
-  img.addEventListener("error", () => {
-    img.src = FALLBACK_AVATAR;
+/** Teks animasi ketik */
+function typeText(element, text, speed) {
+  return new Promise((resolve) => {
+    element.classList.add("typewriter-active");
+    element.innerHTML = "";
+    let i = 0;
+    const interval = setInterval(() => {
+      element.innerHTML += text.charAt(i);
+      i++;
+      if (i >= text.length) {
+        clearInterval(interval);
+        element.classList.remove("typewriter-active");
+        resolve();
+      }
+    }, speed);
   });
-
-  if (header.linkResume && header.linkResume.trim() !== "") {
-    const btn = document.getElementById("hero-resume-btn");
-    if (btn) {
-      btn.href = header.linkResume;
-      btn.classList.remove("hidden");
-    }
-  }
 }
 
 function renderMainContent(data) {
@@ -94,134 +103,100 @@ function renderMainContent(data) {
   if (!container) return;
   container.innerHTML = ""; 
 
-  // Urutan section minimalist
   const sections = [
     createStatsSection(data),
+    createTechSection(data.techStack),
     createProjectsSection(data.projects),
     createExperienceSection(data.experience),
-    createTechSection(data.techStack),
   ].filter(Boolean);
 
   sections.forEach((sec) => container.appendChild(sec));
 }
 
 function createStatsSection(data) {
-  const section = makeSection("Stats");
-  const container = document.createElement("div");
-  container.className = "container";
-  
   const projCount = data.projects?.active ? data.projects.items?.length || 0 : 0;
   const expCount = data.experience?.active ? data.experience.items?.length || 0 : 0;
   const techCount = data.techStack?.active ? data.techStack.items?.length || 0 : 0;
 
-  container.innerHTML = `
+  const html = `
     <div class="stats-grid">
       <div class="stat-box">
-        <span class="stat-value">${projCount}+</span>
-        <span class="stat-label">Projects Completed</span>
+        <div class="stat-value">${projCount}</div>
+        <div class="stat-label">BINARIES</div>
       </div>
       <div class="stat-box">
-        <span class="stat-value">${expCount}</span>
-        <span class="stat-label">Roles & Positions</span>
+        <div class="stat-value">${expCount}</div>
+        <div class="stat-label">LOGS</div>
       </div>
       <div class="stat-box">
-        <span class="stat-value">${techCount}</span>
-        <span class="stat-label">Technologies Mastered</span>
+        <div class="stat-value">${techCount}</div>
+        <div class="stat-label">MODULES</div>
       </div>
     </div>
   `;
-  section.appendChild(container);
-  return section;
-}
-
-function createProjectsSection(projects) {
-  if (!projects?.active || !projects.items?.length) return null;
-  
-  const section = makeSection("Selected Projects", "A collection of my recent work", "projects");
-  const container = document.createElement("div");
-  container.className = "container";
-
-  const listHtml = projects.items.map((p) => {
-    const repoLink = (p.repo && p.repo.trim() !== "") ? 
-      `<a href="${escHtml(p.repo)}" target="_blank" class="link-icon" title="Source Code"><i class="fab fa-github"></i></a>` : "";
-    const prevLink = (p.previewActive && p.previewLink) ? 
-      `<a href="${escHtml(p.previewLink)}" target="_blank" class="link-icon" title="Live Preview"><i class="fas fa-external-link-alt"></i></a>` : "";
-
-    return `
-      <article class="minimal-card">
-        <div class="project-header">
-          <h3 class="project-name">${escHtml(p.name)}</h3>
-          <div class="project-links">${repoLink}${prevLink}</div>
-        </div>
-        <p class="project-desc">${escHtml(p.desc)}</p>
-      </article>
-    `;
-  }).join("");
-
-  container.innerHTML = listHtml;
-  section.appendChild(container);
-  return section;
-}
-
-function createExperienceSection(experience) {
-  if (!experience?.active || !experience.items?.length) return null;
-
-  const section = makeSection("Experience", "Professional timeline", "experience");
-  const container = document.createElement("div");
-  container.className = "container minimal-card";
-
-  const listHtml = experience.items.map(e => `
-    <div class="exp-row">
-      <div class="exp-meta">
-        <div class="exp-period">${escHtml(e.period)}</div>
-        <div class="exp-institution">${escHtml(e.institution)}</div>
-      </div>
-      <div class="exp-details">
-        <h3 class="exp-title">${escHtml(e.title)}</h3>
-        <p class="exp-desc">${escHtml(e.desc)}</p>
-      </div>
-    </div>
-  `).join("");
-
-  container.innerHTML = listHtml;
-  section.appendChild(container);
-  return section;
+  return makeCliSection("cat ./sys_stats.json", html);
 }
 
 function createTechSection(techStack) {
   if (!techStack?.active || !techStack.items?.length) return null;
 
-  const section = makeSection("Technologies", "Tools and frameworks I use");
-  const container = document.createElement("div");
-  container.className = "container";
-
   const pills = techStack.items.map(t => {
-    const icon = t.iconClass || "fas fa-code";
+    return `<div class="tech-tag">[ ${escHtml(t.name)} ]</div>`;
+  }).join("");
+
+  const html = `<div class="tech-container">${pills}</div>`;
+  return makeCliSection("ls -la ./tech_bin/", html);
+}
+
+function createProjectsSection(projects) {
+  if (!projects?.active || !projects.items?.length) return null;
+  
+  const listHtml = projects.items.map((p) => {
+    const repoLink = (p.repo && p.repo.trim() !== "") ? 
+      `[<a href="${escHtml(p.repo)}" target="_blank" class="cli-link">SRC</a>]` : "";
+    const prevLink = (p.previewActive && p.previewLink) ? 
+      `[<a href="${escHtml(p.previewLink)}" target="_blank" class="cli-link">EXEC</a>]` : "";
+
     return `
-      <div class="tech-tag">
-        <i class="${escHtml(icon)}"></i> ${escHtml(t.name)}
+      <div class="cli-project-item">
+        <div class="project-header">
+          <div class="project-name">${escHtml(p.name)}</div>
+          <div class="project-links">${repoLink} ${prevLink}</div>
+        </div>
+        <div class="project-desc">${escHtml(p.desc)}</div>
       </div>
     `;
   }).join("");
 
-  container.innerHTML = `<div class="tech-container minimal-card">${pills}</div>`;
-  section.appendChild(container);
-  return section;
+  return makeCliSection("cat ./projects.log", listHtml, "projects");
+}
+
+function createExperienceSection(experience) {
+  if (!experience?.active || !experience.items?.length) return null;
+
+  const listHtml = experience.items.map(e => `
+    <div class="cli-exp-item">
+      <div class="exp-header">${escHtml(e.title)} @ ${escHtml(e.institution)}</div>
+      <div class="exp-meta">TIMESTAMP: ${escHtml(e.period)}</div>
+      <div class="exp-desc">${escHtml(e.desc)}</div>
+    </div>
+  `).join("");
+
+  return makeCliSection("history | grep exp", listHtml, "experience");
 }
 
 function renderFooter(header, socials) {
-  const year = new Date().getFullYear();
-  setText("#footer-copy", `© ${year} ${header?.namaPanjang || ""}. All rights reserved.`);
-
+  if (!socials) return;
   const container = document.getElementById("footer-socials");
-  if (!container || !socials) return;
+  if (!container) return;
 
   const socialMap = [
-    { key: "github", icon: "fab fa-github", label: "GitHub" },
-    { key: "linkedin", icon: "fab fa-linkedin", label: "LinkedIn" },
-    { key: "twitter", icon: "fab fa-x-twitter", label: "Twitter" },
-    { key: "instagram", icon: "fab fa-instagram", label: "Instagram" },
-    { key: "email", icon: "fas fa-envelope", label: "Email", isEmail: true }
+    { key: "github", label: "GITHUB" },
+    { key: "linkedin", label: "LINKEDIN" },
+    { key: "twitter", label: "TWITTER" },
+    { key: "instagram", label: "INSTAGRAM" },
+    { key: "tiktok", label: "TIKTOK" },
+    { key: "email", label: "SMTP", isEmail: true }
   ];
 
   let html = "";
@@ -230,34 +205,30 @@ function renderFooter(header, socials) {
     if (!val || val.trim() === "") continue;
     const href = s.isEmail ? `mailto:${val.trim()}` : val.trim();
     html += `
-      <a href="${escHtml(href)}" class="social-link" target="${s.isEmail ? "_self" : "_blank"}" aria-label="${escHtml(s.label)}">
-        <i class="${escHtml(s.icon)}"></i>
-      </a>
+      <div class="cli-social-row">
+        <span class="cli-social-key">${escHtml(s.label)}</span>
+        <span class="cli-social-val">=&gt; <a href="${escHtml(href)}" class="cli-link" target="${s.isEmail ? "_self" : "_blank"}">${escHtml(val)}</a></span>
+      </div>
     `;
   }
   container.innerHTML = html;
 }
 
 /* ── DOM Utils ── */
-function makeSection(title, subtitle = "", id = "") {
-  const sec = document.createElement("section");
-  sec.className = "section";
-  if (id) sec.id = id;
+function makeCliSection(commandStr, innerHtml, id = "") {
+  const wrapper = document.createElement("div");
+  wrapper.className = "terminal-section";
+  if (id) wrapper.id = id;
 
-  const headerDiv = document.createElement("div");
-  headerDiv.className = "container section-header";
-  headerDiv.innerHTML = `
-    <h2 class="section-title">${escHtml(title)}</h2>
-    ${subtitle ? `<p class="section-subtitle">${escHtml(subtitle)}</p>` : ''}
+  wrapper.innerHTML = `
+    <div class="cli-prompt">
+      <span class="host">root@server</span>:<span class="path">~</span>$ <span class="command">${escHtml(commandStr)}</span>
+    </div>
+    <div class="cli-output">
+      ${innerHtml}
+    </div>
   `;
-  
-  sec.appendChild(headerDiv);
-  return sec;
-}
-
-function setText(selector, text) {
-  const el = document.querySelector(selector);
-  if (el) el.textContent = text;
+  return wrapper;
 }
 
 function escHtml(str) {
@@ -274,9 +245,8 @@ function showError(msg) {
   const container = document.getElementById("main-content");
   if (container) {
     container.innerHTML = `
-      <div class="container minimal-card" style="text-align:center;">
-        <h2 style="color:var(--primary);margin-bottom:12px;">Failed to load data</h2>
-        <p style="color:var(--text-muted);">${escHtml(msg)}</p>
-      </div>`;
+      <div class="cli-prompt"><span class="command">ERR: Kernel panic</span></div>
+      <div class="cli-output" style="color:red;">${escHtml(msg)}</div>
+    `;
   }
 }

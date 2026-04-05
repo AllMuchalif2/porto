@@ -1,13 +1,13 @@
 {
   "settings": {
-    "bg": "#fafafa",
-    "cardBg": "#ffffff",
-    "cardBorder": "#e5e7eb",
-    "textLight": "#111827",
-    "textDark": "#6b7280",
-    "primary": "#000000",
-    "secondary": "#f3f4f6",
-    "accent": "#9ca3af"
+    "bg": "#0c0c0c",
+    "cardBg": "#0c0c0c",
+    "cardBorder": "#00ff00",
+    "textLight": "#00ff00",
+    "textDark": "#00aa00",
+    "primary": "#00ff00",
+    "secondary": "#003300",
+    "accent": "#00ffee"
   },
   "header": {
     "nama": "Nama",
