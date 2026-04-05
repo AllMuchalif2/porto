@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio</title>
+    <meta name="description" content="Professional Portfolio" />
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="src/style.css" />
+  </head>
+  <body>
+    <!-- ░░ NAVBAR ░░ -->
+    <nav id="navbar" aria-label="Main Navigation">
+      <div class="container nav-inner">
+        <a href="#" class="nav-brand" id="nav-brand">Logo</a>
+        <div class="nav-links">
+          <a href="#projects">Projects</a>
+          <a href="#experience">Experience</a>
+          <a href="#footer">Contact</a>
+        </div>
+        <a
+          id="nav-resume-btn"
+          href="#"
+          target="_blank"
+          rel="noopener"
+          class="btn btn-outline hidden"
+        >
+          Resume
+        </a>
+      </div>
+    </nav>
+
+    <!-- ░░ HERO SECTION ░░ -->
+    <header class="section-hero" id="hero" aria-label="Hero Section">
+      <div class="container hero-inner">
+        <div class="hero-photo-container">
+          <!-- Injected via JS -->
+        </div>
+        <div class="hero-content">
+          <span class="hero-subtitle">Hello, I am</span>
+          <h1 id="hero-name" class="hero-title">Developer Name</h1>
+          <p id="hero-desc" class="hero-description">Brief introduction and summary about what I do and my professional focus.</p>
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary">View Work</a>
+            <a
+              id="hero-resume-btn"
+              href="#"
+              target="_blank"
+              rel="noopener"
+              class="btn btn-outline hidden"
+            >
+              Download Resume
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ░░ MAIN CONTENT ░░ -->
+    <main id="main-content">
+      <!-- Sections will be injected by JS here -->
+      <div class="container skeleton-loader">
+        <p>Loading content...</p>
+      </div>
+    </main>
+
+    <!-- ░░ FOOTER ░░ -->
+    <footer id="footer" aria-label="Footer and Socials">
+      <div class="container footer-inner">
+        <div class="footer-top">
+          <h2 class="footer-heading" id="footer-brand">Let's Connect</h2>
+          <div id="footer-socials" class="social-links" aria-label="Social Media">
+            <!-- Icons injected via JS -->
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p class="footer-copy" id="footer-copy">© 2026 Developer</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="src/script.js"></script>
+  </body>
+</html>
