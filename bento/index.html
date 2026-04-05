@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Memuat...</title>
+    <meta name="description" content="Portofolio pribadi developer" />
+
+    <!-- Google Fonts: Syne (display) + DM Sans (body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="src/style.css" />
+  </head>
+  <body>
+    <!-- ░░ NOISE OVERLAY ░░ -->
+    <div class="noise-overlay" aria-hidden="true"></div>
+
+    <!-- ░░ NAVBAR ░░ -->
+    <nav id="navbar" aria-label="Navigasi utama">
+      <div class="nav-inner">
+        <a href="#" class="nav-brand" id="nav-brand">—</a>
+        <div class="nav-links">
+          <a href="#bento-container">Portofolio</a>
+          <a href="#footer">Kontak</a>
+        </div>
+        <a
+          id="nav-resume-btn"
+          href="#"
+          target="_blank"
+          rel="noopener"
+          class="btn-resume hidden"
+        >
+          <i class="fas fa-file-arrow-down"></i> Resume
+        </a>
+      </div>
+    </nav>
+
+    <!-- ░░ HERO ░░ -->
+    <header id="hero" aria-label="Perkenalan">
+      <div class="hero-eyebrow">
+        <span class="dot-pulse" aria-hidden="true"></span>
+        <span>Tersedia untuk proyek baru</span>
+      </div>
+      <h1 id="hero-name" class="hero-name">—</h1>
+      <p id="hero-desc" class="hero-desc">—</p>
+      <div class="hero-cta">
+        <a href="#bento-container" class="btn-primary">
+          Lihat Karya <i class="fas fa-arrow-down"></i>
+        </a>
+        <a
+          id="hero-resume-btn"
+          href="#"
+          target="_blank"
+          rel="noopener"
+          class="btn-ghost hidden"
+        >
+          <i class="fas fa-file-lines"></i> Unduh Resume
+        </a>
+      </div>
+    </header>
+
+    <!-- ░░ BENTO GRID ░░ -->
+    <main id="bento-container" aria-label="Bagian konten utama">
+      <!-- Kartu akan diinjeksi oleh JS -->
+      <div class="bento-skeleton" aria-hidden="true"></div>
+    </main>
+
+    <!-- ░░ FOOTER ░░ -->
+    <footer id="footer" aria-label="Footer dan media sosial">
+      <div class="footer-inner">
+        <p class="footer-brand" id="footer-brand">—</p>
+        <div
+          id="footer-socials"
+          class="footer-socials"
+          aria-label="Media Sosial"
+        >
+          <!-- Ikon sosial diinjeksi oleh JS -->
+        </div>
+        <p class="footer-copy" id="footer-copy">—</p>
+      </div>
+    </footer>
+
+    <script src="src/script.js"></script>
+  </body>
+</html>
