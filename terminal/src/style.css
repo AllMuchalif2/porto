@@ -1,0 +1,329 @@
+/* ============================================================
+   PORTOFOLIO TERMINAL / CLI — style.css
+   Aesthetic: Retro CRT, Hacker Terminal, Fira Code, Neon Glow
+   ============================================================ */
+
+/* ── CSS CUSTOM PROPERTIES ── */
+:root {
+  --bg: #0c0c0c;
+  --card-bg: #0c0c0c;
+  --card-border: #00ff00;
+  --text-main: #00ff00;   /* Mapped from JSON primary/textLight */
+  --text-muted: #00aa00;  /* Mapped from JSON textDark */
+  --primary: #00ff00;
+  --secondary-bg: #003300;
+
+  --font-family: 'Fira Code', 'Courier New', Courier, monospace;
+}
+
+/* ── RESET & BASE ── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text-main);
+  font-family: var(--font-family);
+  font-weight: 400;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Scrollbar for Terminal */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+  border-left: 1px solid var(--text-muted);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--text-main);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+img, svg {
+  display: block;
+  max-width: 100%;
+}
+.hidden {
+  display: none !important;
+}
+
+/* ── CRT OVERLAY (Scanlines) ── */
+.crt-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.25) 50%
+  );
+  background-size: 100% 4px;
+}
+.crt-overlay::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 255, 0, 0.03); /* Subtle green tint */
+  z-index: 2;
+}
+
+/* Main Container Limit */
+.terminal-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  text-shadow: 0 0 3px var(--text-main); /* Glowing phosphor effect */
+}
+
+/* ── TERMINAL COMPONENTS ── */
+.sys-output {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+}
+
+.cli-prompt {
+  margin-top: 24px;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+.cli-prompt .host { color: var(--text-main); }
+.cli-prompt .path { color: var(--text-muted); }
+.cli-prompt .command { color: #ffffff; text-shadow: 0 0 5px #ffffff; }
+
+.cli-output {
+  margin-left: 0;
+  padding-left: 12px;
+  border-left: 1px solid var(--text-muted);
+  margin-bottom: 30px;
+}
+
+/* Typograpghy */
+h1, h2, h3, h4 {
+  font-weight: 700;
+  margin-bottom: 12px;
+  font-size: 1.1rem;
+}
+
+/* Links */
+.cli-link {
+  color: var(--text-main);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.1s;
+}
+.cli-link:hover {
+  background-color: var(--text-main);
+  color: var(--bg);
+  text-shadow: none;
+  text-decoration: none;
+}
+
+/* ── NAVBAR LOG ── */
+#navbar {
+  margin-bottom: 40px;
+  border-bottom: 1px dashed var(--text-muted);
+  padding-bottom: 20px;
+}
+.cli-brand {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* ── HERO SECTION ── */
+.hero-flex {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  align-items: center;
+}
+.hero-photo-container {
+  width: 120px;
+  height: 120px;
+  border: 1px solid var(--text-main);
+  padding: 4px;
+  flex-shrink: 0;
+}
+.hero-photo-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%) contrast(150%) sepia(100%) hue-rotate(80deg);
+}
+
+.hero-text-block {
+  flex: 1;
+}
+
+/* Typerwriter utility */
+.typewriter-text {
+  border-right: 12px solid transparent;
+  white-space: pre-wrap; 
+}
+.typewriter-active {
+  border-right-color: var(--text-main);
+  animation: blink 0.75s step-start infinite;
+}
+
+.hero-actions {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ── MODULAR SECTIONS ── */
+
+/* Tech Stack */
+.tech-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  font-size: 0.9rem;
+}
+.tech-tag {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 8px;
+  background: var(--secondary-bg);
+  border: 1px solid var(--text-muted);
+}
+.tech-tag i {
+  color: var(--text-muted);
+}
+
+/* Project Item */
+.cli-project-item {
+  margin-bottom: 25px;
+}
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px dotted var(--text-muted);
+  margin-bottom: 8px;
+  padding-bottom: 4px;
+}
+.project-name {
+  font-weight: 700;
+}
+.project-name::before {
+  content: "[+] ";
+  color: var(--text-muted);
+}
+.project-links {
+  display: flex;
+  gap: 15px;
+}
+.project-desc {
+  font-size: 0.95rem;
+  padding-left: 24px;
+}
+
+/* Experience Item */
+.cli-exp-item {
+  margin-bottom: 25px;
+}
+.exp-header {
+  color: var(--text-main);
+  font-weight: bold;
+}
+.exp-meta {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-bottom: 6px;
+}
+.exp-desc {
+  padding-left: 12px;
+  border-left: 1px dotted var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* ── STATS ROW ── */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.stat-box {
+  border: 1px solid var(--text-muted);
+  padding: 10px;
+  text-align: center;
+}
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.stat-label {
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+/* ── FOOTER ── */
+.social-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.cli-social-row {
+  display: flex;
+  gap: 15px;
+}
+.cli-social-key {
+  width: 100px;
+  color: var(--text-muted);
+}
+
+/* Global Blinking Cursor at bottom */
+.global-cursor {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  font-family: var(--font-family);
+  font-size: 1.5rem;
+  color: var(--text-main);
+  animation: blink 1s step-start infinite;
+  text-shadow: 0 0 5px var(--text-main);
+}
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-flex {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,146 @@
+{
+  "settings": {
+    "bg": "#0c0c0c",
+    "cardBg": "#0c0c0c",
+    "cardBorder": "#00ff00",
+    "textLight": "#00ff00",
+    "textDark": "#00aa00",
+    "primary": "#00ff00",
+    "secondary": "#003300",
+    "accent": "#00ffee"
+  },
+  "header": {
+    "nama": "Nama",
+    "namaPanjang": "Nama Kamu",
+    "foto": "images/foto.jpg",
+    "deskripsi": "Deskripsi Kamu Disini",
+    "linkResume": "https://drive.google.com/file/d/example/view"
+  },
+  "techStack": {
+    "active": true,
+    "items": [
+      {
+        "name": "HTML5",
+        "iconClass": "fab fa-html5"
+      },
+      {
+        "name": "CSS3",
+        "iconClass": "fab fa-css3-alt"
+      },
+      {
+        "name": "JavaScript",
+        "iconClass": "fab fa-js"
+      },
+      {
+        "name": "React",
+        "iconClass": "fab fa-react"
+      },
+      {
+        "name": "Node.js",
+        "iconClass": "fab fa-node-js"
+      },
+      {
+        "name": "Python",
+        "iconClass": "fab fa-python"
+      },
+      {
+        "name": "Git",
+        "iconClass": "fab fa-git-alt"
+      },
+      {
+        "name": "Docker",
+        "iconClass": "fab fa-docker"
+      },
+      {
+        "name": "Database",
+        "iconClass": "fas fa-database"
+      },
+      {
+        "name": "Figma",
+        "iconClass": "fab fa-figma"
+      }
+    ]
+  },
+  "projects": {
+    "active": true,
+    "items": [
+      {
+        "name": "Nama Project",
+        "desc": "Deskripsi Project",
+        "repo": "https://github.com/username/project",
+        "previewActive": true,
+        "previewLink": "https://project.vercel.app"
+      },
+      {
+        "name": "Nama Project",
+        "desc": "Deskripsi Project",
+        "repo": "https://github.com/username/project",
+        "previewActive": true,
+        "previewLink": "https://project.vercel.app"
+      },
+      {
+        "name": "Nama Project",
+        "desc": "Deskripsi Project",
+        "repo": "https://github.com/username/project",
+        "previewActive": false,
+        "previewLink": ""
+      }
+    ]
+  },
+  "experience": {
+    "active": true,
+    "items": [
+      {
+        "title": "S1 Teknik Informatika",
+        "institution": "Universitas Diponegoro",
+        "period": "2020 - 2024",
+        "desc": "Spesialisasi rekayasa perangkat lunak dan kecerdasan buatan. IPK 3.78/4.00."
+      },
+      {
+        "title": "Front-end Developer Intern",
+        "institution": "PT. Telkom Indonesia",
+        "period": "Feb - Jul 2023",
+        "desc": "Membangun komponen UI dengan React & TypeScript untuk platform internal perusahaan yang digunakan oleh 500+ karyawan."
+      },
+      {
+        "title": "Ketua Divisi Teknologi",
+        "institution": "BEM Universitas Diponegoro",
+        "period": "2022 - 2023",
+        "desc": "Memimpin tim 8 orang dalam pengembangan website dan aplikasi acara kampus skala nasional."
+      },
+      {
+        "title": "Freelance Web Developer",
+        "institution": "Self-employed",
+        "period": "2021 - Sekarang",
+        "desc": "Mengerjakan 15+ proyek web untuk UMKM dan startup lokal, mulai dari landing page hingga sistem informasi."
+      },
+      {
+        "title": "Peserta Bangkit Academy",
+        "institution": "Google, Tokopedia, Gojek, Traveloka",
+        "period": "Feb - Jul 2022",
+        "desc": "Program intensif machine learning & cloud computing. Lulus dengan predikat Distinction."
+      },
+      {
+        "title": "Juara 1 Hackathon GEMASTIK",
+        "institution": "Kemendikbudristek RI",
+        "period": "Oktober 2022",
+        "desc": "Memenangkan kompetisi pengembangan perangkat lunak nasional dengan solusi smart village berbasis IoT."
+      },
+      {
+        "title": "Open Source Contributor",
+        "institution": "GitHub Community",
+        "period": "2021 - Sekarang",
+        "desc": "Berkontribusi pada beberapa proyek open source populer di ekosistem JavaScript dan Python."
+      }
+    ]
+  },
+  "socials": {
+    "instagram": "https://instagram.com/username",
+    "email": "email.kamu@email.com",
+    "github": "https://github.com/username",
+    "tiktok": "",
+    "linkedin": "https://linkedin.com/in/username",
+    "facebook": "",
+    "twitter": "https://twitter.com/username"
+  }
+}
