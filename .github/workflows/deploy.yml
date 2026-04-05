@@ -1,0 +1,39 @@
+name: Multi-Style Portfolio Deployer
+
+on:
+  push:
+    branches:
+      - main
+      - "style/**" # Akan mendeteksi branch seperti style/manga, style/bento, dll.
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Determine Destination Folder
+        id: config
+        run: |
+          # Ambil nama branch (misal: style/manga -> manga)
+          BRANCH_NAME=$(echo ${GITHUB_REF#refs/heads/})
+
+          if [ "$BRANCH_NAME" = "main" ]; then
+            echo "dest=." >> $GITHUB_OUTPUT
+          else
+            # Menghapus prefix 'style/' untuk jadi nama folder
+            FOLDER_NAME=$(echo $BRANCH_NAME | sed 's/style\///g')
+            echo "dest=$FOLDER_NAME" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./ # Folder yang akan di-upload
+          destination_dir: ${{ steps.config.outputs.dest }} # Folder tujuan di gh-pages
+          keep_files: true # PENTING: Agar folder gaya lain tidak terhapus saat satu gaya di-update
