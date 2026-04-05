@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Memuat...</title>
+    <meta name="description" content="Portofolio pribadi developer" />
+
+    <!-- Google Fonts: Bangers (display comic) + DM Sans (body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bangers&family=DM+Sans:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="src/style.css" />
+  </head>
+  <body>
+    <!-- ░░ MANGA EFFECT OVERLAY (Halftone) ░░ -->
+    <div class="manga-overlay" aria-hidden="true"></div>
+
+    <!-- ░░ NAVBAR ░░ -->
+    <nav id="navbar" aria-label="Navigasi utama">
+      <div class="nav-inner">
+        <a href="#" class="nav-brand manga-text" id="nav-brand">...</a>
+        <div class="nav-links">
+          <a href="#manga-container">VOL. 1: PORTFOLIO</a>
+          <a href="#footer">CONTACT!</a>
+        </div>
+        <a
+          id="nav-resume-btn"
+          href="#"
+          target="_blank"
+          rel="noopener"
+          class="btn-comic hidden"
+        >
+          RESUME! <i class="fas fa-file-arrow-down"></i>
+        </a>
+      </div>
+    </nav>
+
+    <!-- ░░ HERO PANEL ░░ -->
+    <header class="manga-panel-hero" id="hero" aria-label="Perkenalan">
+      
+      <!-- Panel 1: Gambar & Nama -->
+      <div class="hero-character-panel">
+        <div class="hero-photo-wrapper">
+           <!-- Diisi JS -->
+        </div>
+        <div class="hero-name-bubble">
+          <h1 id="hero-name" class="manga-text hero-name">NAME!</h1>
+        </div>
+      </div>
+
+      <!-- Panel 2: Deskripsi & Cta (Speech Bubble) -->
+      <div class="hero-dialog-panel">
+        <div class="speech-bubble">
+          <p id="hero-desc" class="hero-desc">...</p>
+        </div>
+        <div class="hero-cta">
+          <a href="#manga-container" class="btn-comic btn-primary">
+            READ MORE! <i class="fas fa-arrow-down"></i>
+          </a>
+          <a
+            id="hero-resume-btn"
+            href="#"
+            target="_blank"
+            rel="noopener"
+            class="btn-comic btn-ghost hidden"
+          >
+            RESUME <i class="fas fa-download"></i>
+          </a>
+        </div>
+      </div>
+
+    </header>
+
+    <!-- ░░ MANGA GRID LAYOUT ░░ -->
+    <main id="manga-container" aria-label="Bagian konten utama">
+      <!-- Kartu akan diinjeksi oleh JS -->
+      <div class="comic-skeleton" aria-hidden="true"><h2>LOADING PAGE...</h2></div>
+    </main>
+
+    <!-- ░░ FOOTER ░░ -->
+    <footer id="footer" aria-label="Footer dan media sosial">
+      <div class="footer-inner">
+        <h2 class="footer-brand manga-text" id="footer-brand">TO BE CONTINUED...</h2>
+        <div
+          id="footer-socials"
+          class="footer-socials"
+          aria-label="Media Sosial"
+        >
+          <!-- Ikon sosial diinjeksi oleh JS -->
+        </div>
+        <p class="footer-copy" id="footer-copy">© 2026</p>
+      </div>
+    </footer>
+
+    <script src="src/script.js"></script>
+  </body>
+</html>
