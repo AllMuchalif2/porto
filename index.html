@@ -1,16 +1,16 @@
 <!doctype html>
-<html lang="id">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Memuat...</title>
-    <meta name="description" content="Portofolio pribadi developer" />
+    <title>Portfolio</title>
+    <meta name="description" content="Professional Portfolio" />
 
-    <!-- Google Fonts: Bangers (display comic) + DM Sans (body) -->
+    <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Bangers&family=DM+Sans:ital,wght@0,400;0,700;1,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
 
@@ -23,83 +23,73 @@
     <link rel="stylesheet" href="src/style.css" />
   </head>
   <body>
-    <!-- ░░ MANGA EFFECT OVERLAY (Halftone) ░░ -->
-    <div class="manga-overlay" aria-hidden="true"></div>
-
     <!-- ░░ NAVBAR ░░ -->
-    <nav id="navbar" aria-label="Navigasi utama">
-      <div class="nav-inner">
-        <a href="#" class="nav-brand manga-text" id="nav-brand">...</a>
+    <nav id="navbar" aria-label="Main Navigation">
+      <div class="container nav-inner">
+        <a href="#" class="nav-brand" id="nav-brand">Logo</a>
         <div class="nav-links">
-          <a href="#manga-container">VOL. 1: PORTFOLIO</a>
-          <a href="#footer">CONTACT!</a>
+          <a href="#projects">Projects</a>
+          <a href="#experience">Experience</a>
+          <a href="#footer">Contact</a>
         </div>
         <a
           id="nav-resume-btn"
           href="#"
           target="_blank"
           rel="noopener"
-          class="btn-comic hidden"
+          class="btn btn-outline hidden"
         >
-          RESUME! <i class="fas fa-file-arrow-down"></i>
+          Resume
         </a>
       </div>
     </nav>
 
-    <!-- ░░ HERO PANEL ░░ -->
-    <header class="manga-panel-hero" id="hero" aria-label="Perkenalan">
-      
-      <!-- Panel 1: Gambar & Nama -->
-      <div class="hero-character-panel">
-        <div class="hero-photo-wrapper">
-           <!-- Diisi JS -->
+    <!-- ░░ HERO SECTION ░░ -->
+    <header class="section-hero" id="hero" aria-label="Hero Section">
+      <div class="container hero-inner">
+        <div class="hero-photo-container">
+          <!-- Injected via JS -->
         </div>
-        <div class="hero-name-bubble">
-          <h1 id="hero-name" class="manga-text hero-name">NAME!</h1>
-        </div>
-      </div>
-
-      <!-- Panel 2: Deskripsi & Cta (Speech Bubble) -->
-      <div class="hero-dialog-panel">
-        <div class="speech-bubble">
-          <p id="hero-desc" class="hero-desc">...</p>
-        </div>
-        <div class="hero-cta">
-          <a href="#manga-container" class="btn-comic btn-primary">
-            READ MORE! <i class="fas fa-arrow-down"></i>
-          </a>
-          <a
-            id="hero-resume-btn"
-            href="#"
-            target="_blank"
-            rel="noopener"
-            class="btn-comic btn-ghost hidden"
-          >
-            RESUME <i class="fas fa-download"></i>
-          </a>
+        <div class="hero-content">
+          <span class="hero-subtitle">Hello, I am</span>
+          <h1 id="hero-name" class="hero-title">Developer Name</h1>
+          <p id="hero-desc" class="hero-description">Brief introduction and summary about what I do and my professional focus.</p>
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary">View Work</a>
+            <a
+              id="hero-resume-btn"
+              href="#"
+              target="_blank"
+              rel="noopener"
+              class="btn btn-outline hidden"
+            >
+              Download Resume
+            </a>
+          </div>
         </div>
       </div>
-
     </header>
 
-    <!-- ░░ MANGA GRID LAYOUT ░░ -->
-    <main id="manga-container" aria-label="Bagian konten utama">
-      <!-- Kartu akan diinjeksi oleh JS -->
-      <div class="comic-skeleton" aria-hidden="true"><h2>LOADING PAGE...</h2></div>
+    <!-- ░░ MAIN CONTENT ░░ -->
+    <main id="main-content">
+      <!-- Sections will be injected by JS here -->
+      <div class="container skeleton-loader">
+        <p>Loading content...</p>
+      </div>
     </main>
 
     <!-- ░░ FOOTER ░░ -->
-    <footer id="footer" aria-label="Footer dan media sosial">
-      <div class="footer-inner">
-        <h2 class="footer-brand manga-text" id="footer-brand">TO BE CONTINUED...</h2>
-        <div
-          id="footer-socials"
-          class="footer-socials"
-          aria-label="Media Sosial"
-        >
-          <!-- Ikon sosial diinjeksi oleh JS -->
+    <footer id="footer" aria-label="Footer and Socials">
+      <div class="container footer-inner">
+        <div class="footer-top">
+          <h2 class="footer-heading" id="footer-brand">Let's Connect</h2>
+          <div id="footer-socials" class="social-links" aria-label="Social Media">
+            <!-- Icons injected via JS -->
+          </div>
         </div>
-        <p class="footer-copy" id="footer-copy">© 2026</p>
+        <div class="footer-bottom">
+          <p class="footer-copy" id="footer-copy">© 2026 Developer</p>
+        </div>
       </div>
     </footer>
 
