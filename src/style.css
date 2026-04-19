@@ -326,4 +326,11 @@ h1, h2, h3, h4 {
   .stats-grid {
     grid-template-columns: 1fr;
   }
+  .cli-social-row {
+    flex-direction: column;
+    gap: 5px;
+  }
+  .cli-social-key {
+    width: auto;
+  }
 }
