@@ -4,10 +4,10 @@
     "cardBg": "#ffffff",
     "cardBorder": "#000000",
     "textLight": "#000000",
-    "textDark": "#444444",
-    "primary": "#ffeb3b",
-    "secondary": "#00e5ff",
-    "accent": "#ff2a93"
+    "textDark": "#333333",
+    "primary": "#000000",
+    "secondary": "#e0e0e0",
+    "accent": "#666666"
   },
   "header": {
     "nama": "Nama",

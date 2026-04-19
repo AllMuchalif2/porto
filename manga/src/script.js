@@ -65,7 +65,7 @@ function renderHero(header) {
 
   // Fotomu
   const wrapper = document.querySelector(".hero-photo-wrapper");
-  const FALLBACK_AVATAR = `https://api.dicebear.com/9.x/initials/svg?seed=${encodeURIComponent(header.nama || "Dev")}&backgroundColor=ffeb3b&textColor=000000`;
+  const FALLBACK_AVATAR = `https://api.dicebear.com/9.x/initials/svg?seed=${encodeURIComponent(header.nama || "Dev")}&backgroundColor=000000&textColor=ffffff`;
   const fotoSrc = header.foto && header.foto.trim() !== "" ? header.foto.trim() : FALLBACK_AVATAR;
 
   wrapper.innerHTML = `<img id="profile-photo" src="${escHtml(fotoSrc)}" alt="${escHtml(header.namaPanjang || '')}" />`;
@@ -108,7 +108,7 @@ function createPanelQuote(header) {
   const rest = words.slice(3).join(" ");
 
   panel.innerHTML = `
-    <div class="panel-title">BACKGROUND</div>
+    <div class="panel-title">BACKGROUND / 背景</div>
     <div class="big-quote">
       <span>${escHtml(highlight)}</span> ${escHtml(rest)}
     </div>
@@ -123,7 +123,7 @@ function createPanelStats(data) {
   const techCount = data.techStack?.active ? data.techStack.items?.length || 0 : 0;
 
   panel.innerHTML = `
-    <div class="panel-title">STATS</div>
+    <div class="panel-title">STATS / 能力値</div>
     <div class="manga-stat-row">
       <span class="stat-label">Projects Completed</span>
       <span class="stat-value">${projCount}+</span>
@@ -157,7 +157,7 @@ function createPanelTech(techStack) {
   }).join("");
 
   panel.innerHTML = `
-    <div class="panel-title">ARSENAL</div>
+    <div class="panel-title">ARSENAL / 装備</div>
     <div class="tech-grid">${pills}</div>
   `;
   return panel;
@@ -186,7 +186,7 @@ function createPanelProjects(projects) {
   }).join("");
 
   panel.innerHTML = `
-    <div class="panel-title">MISSION LOGS</div>
+    <div class="panel-title">MISSION LOGS / 作戦記録</div>
     <div class="project-list">${listHtml}</div>
   `;
   return panel;
@@ -207,7 +207,7 @@ function createPanelExperience(experience) {
   `).join("");
 
   panel.innerHTML = `
-    <div class="panel-title">ORIGIN STORY</div>
+    <div class="panel-title">ORIGIN STORY / 出自</div>
     <div class="exp-list">${listHtml}</div>
   `;
   return panel;
@@ -224,7 +224,7 @@ function createPanelStatus() {
 function renderFooter(header, socials) {
   setText("#footer-brand", "TO BE CONTINUED...");
   const year = new Date().getFullYear();
-  setText("#footer-copy", `© ${year} ${header?.namaPanjang || ""}. Comic Style Edition.`);
+  setText("#footer-copy", `© ${year} ${header?.namaPanjang || ""}. Manga Edition.`);
 
   const container = document.getElementById("footer-socials");
   if (!container || !socials) return;
